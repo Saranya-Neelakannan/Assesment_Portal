@@ -3,6 +3,7 @@ package com.main.assessment;
 import java.io.InputStreamReader;
 
 import com.main.assessment.controller.AdminController;
+import com.main.assessment.controller.EmployeeController;
 import com.main.assessment.utilities.Utils;
 
 import java.io.BufferedReader;
@@ -20,7 +21,13 @@ public class AssessmentPortal {
             System.out.print("Enter the choice : ");
             switch (Integer.parseInt(reader.readLine())) {
                 case 1:
-                    new AdminController(reader).start();
+                    AdminController adminController = new AdminController();
+                    adminController.start();
+                    break;
+
+                case 2:
+                    EmployeeController employeeController = new EmployeeController();
+                    employeeController.start();
                     break;
 
                 case 3:

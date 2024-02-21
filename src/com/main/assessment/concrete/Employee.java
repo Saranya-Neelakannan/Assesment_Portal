@@ -1,6 +1,7 @@
 package com.main.assessment.concrete;
 
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Employee
@@ -18,8 +19,8 @@ public class Employee {
 		this.userName = userName;
 		this.password = password;
 		this.fullName = fullName;
-		this.asssementMarks = asssementMarks;
-		this.assesmentStatus = assesmentStatus;
+		this.asssementMarks = new HashMap<>();
+		this.assesmentStatus = new HashMap<>();
 	}
 
 	public Employee() {
@@ -70,22 +71,13 @@ public class Employee {
 		this.asssementMarks.put(groupId, marks);
 	}
 
-
-	public Employee(String userName, String password, String fullName){
- 
-
+	public Employee(String userName, String password, String fullName) {
 		this.userName = userName;
 		this.password = password;
 		this.fullName = fullName;
-	
-		
+		this.asssementMarks = new HashMap<>();
+		this.assesmentStatus = new HashMap<>();
 	}
-
-	
-
-	
-
-
 
 	@Override
 	public String toString() {

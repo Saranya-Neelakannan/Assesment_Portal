@@ -5,6 +5,7 @@ import com.main.assessment.exceptions.EmployeeNotFoundException;
 import com.main.assessment.service.AdminService;
 import com.main.assessment.utilities.Utils;
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 
 /**
@@ -12,19 +13,14 @@ import java.io.IOException;
  */
 public class AdminController {
 
-    public AdminController(BufferedReader reader) {
-        this.reader = reader;
-    }
-
-    private BufferedReader reader;
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private String username, password;
-    private AdminService adminService;
+    private AdminService adminService = new AdminService();
 
     /*
      * the start method which is going to be execute first
      */
     public void start() throws IOException {
-        adminService.setReader(reader);
         try {
             adminLogin();
             do {

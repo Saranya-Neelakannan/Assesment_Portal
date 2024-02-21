@@ -10,7 +10,12 @@ import com.main.assessment.concrete.Employee;
  */
 public class EmployeeData {
 
-    private static List<Employee> employees = new ArrayList<>();
+    private static List<Employee> employees = new ArrayList<>(
+        List.of(
+            new Employee("dhinesh", "dhinesh", "Dhineshkumar D"),
+            new Employee("saranya", "saranya", "Saranya N")
+        )
+    );
 
     /*
      * to get all employees

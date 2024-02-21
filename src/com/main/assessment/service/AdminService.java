@@ -1,6 +1,7 @@
 package com.main.assessment.service;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +21,7 @@ public class AdminService {
     private QuestionsData qData = new QuestionsData();
     private EmployeeData employeeData = new EmployeeData();
     private Admin admin = new Admin();
-    private BufferedReader reader;
-    
-    /*
-     * to set the reader
-     */
-    public void setReader(BufferedReader reader) {
-        this.reader = reader;
-    }
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     /*
      * to login the admin

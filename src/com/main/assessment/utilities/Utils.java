@@ -12,7 +12,8 @@ public class Utils {
      * to view the admin menus with it's choices.
      */
     public static void adminMenu() {
-        System.out.println("1.View all Employees.\n2.View All Questions.\n3.View Questions by Group Name.\n4.Create Questions.\n5.Assign Assessments to the Employee.\n");
+        System.out.println("1.View all Employees.\n2.View All Questions.\n3.View Questions by Group Name.\n4.Assign Assessments to the Employee.\n5.Create Questions.\\n" + //
+                        "");
     }
 
     /*
@@ -20,7 +21,7 @@ public class Utils {
      */
     public static void employeeMenu() {
         System.out.println(
-                "1.Login.\n2.Register.\n3.Begin Assessment.\n4.View all Assessments.\n5.View Pending Assessments.\n6.View Completed Assessments.\n7.View all Assessment Marks.\n8.View Particular Question Group Assessment Mark.\n");
+                "1.Begin Assessment.\n2.View all Assessments.\n3.View Pending Assessments.\n4.View Completed Assessments.\n5.View all Assessment Marks.\n6.View Particular Question Group Assessment Mark.\n");
     }
 
     /*
