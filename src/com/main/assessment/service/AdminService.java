@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import com.main.assessment.concrete.Admin;
+import com.main.assessment.concrete.Employee;
 import com.main.assessment.concrete.Questions;
 import com.main.assessment.data.AdminData;
+import com.main.assessment.data.EmployeeData;
 import com.main.assessment.data.QuestionsData;
+import com.main.assessment.exceptions.EmployeeNotFoundException;
 
 /**
  * AdminService
@@ -15,6 +18,7 @@ import com.main.assessment.data.QuestionsData;
 public class AdminService {
     private AdminData adminData = new AdminData();
     private QuestionsData qData = new QuestionsData();
+    private EmployeeData employeeData = new EmployeeData();
     private Admin admin = new Admin();
     private BufferedReader reader;
 
@@ -69,6 +73,48 @@ public class AdminService {
             System.out.println();
         }
         qData.addQuestion(new Questions(qId, question, answer, options));
+    }
+
+    /*
+     * to assign the questions to an employee
+     */
+    public String assignAssessmentToEmployee(String username, String groupName) {
+        Employee employee = employeeData.getEmployee(username);
+        if (employee == null) {
+            throw new EmployeeNotFoundException("Employee Not Found");
+        } else {
+            String status = employee.getAssesmentStatus().get(groupName);
+            if (status == null) {
+                employee.setAssesmentStatus(groupName, "pending");
+                return "assigned";
+            } else if (status == "pending") {
+                return "assessment-pending";
+            } else {
+                employee.setAssesmentStatus(groupName, "pending");
+                return "assigned";
+            }
+        }
+    }
+
+    /*
+     * to view all questions
+     */
+    public void viewAllQuestions() {
+        qData.getAllQuestions().forEach(System.out::println);
+    }
+
+    /*
+     * to view questions by group name
+     */
+    public void viewQuestionsByGroupName(String groupName) {
+        qData.getQuestionsByGroupId(groupName).forEach(System.out::println);
+    }
+
+    /*
+     * to view all employees
+     */
+    public void viewAllEmployees() {
+        employeeData.getAllEmployees().forEach(System.out::println);
     }
 
 }

@@ -35,5 +35,12 @@ public class EmployeeData {
         employees.add(employee);
     }
 
+    /*
+     * to get employee by username
+     */
+    public Employee getEmployee(String username) {
+        return employees.stream().filter(employee -> employee.getUserName().equals(username)).findFirst().orElse(null);
+    }
+
     
 }
