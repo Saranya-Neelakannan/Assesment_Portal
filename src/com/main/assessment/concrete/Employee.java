@@ -10,6 +10,15 @@ public class Employee {
 	private String password;
 	private String fullName;
 	private Map<String, Double> asssementMarks;
+	private Map<String, String> assesmentStatus;
+
+	public Map<String, String> getAssesmentStatus() {
+		return assesmentStatus;
+	}
+
+	public void setAssesmentStatus(Map<String, String> assesmentStatus) {
+		this.assesmentStatus = assesmentStatus;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -43,22 +52,24 @@ public class Employee {
 		this.asssementMarks = asssementMarks;
 	}
 
-	public Employee(String userName, String password, String fullName, Map<String, Double> asssementMarks) {
-		super();
+	public Employee(String userName, String password, String fullName, Map<String, Double> asssementMarks,
+			Map<String, String> assesmentStatus) {
+
 		this.userName = userName;
 		this.password = password;
 		this.fullName = fullName;
 		this.asssementMarks = asssementMarks;
+		this.assesmentStatus = assesmentStatus;
 	}
 
 	public Employee() {
-		super();
+
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [userName=" + userName + ", password=" + password + ", fullName=" + fullName
-				+ ", asssementMarks=" + asssementMarks + "]";
+				+ ", asssementMarks=" + asssementMarks + ", assesmentStatus=" + assesmentStatus + "]";
 	}
 
 }
