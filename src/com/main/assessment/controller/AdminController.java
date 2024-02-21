@@ -3,7 +3,6 @@ package com.main.assessment.controller;
 import com.main.assessment.exceptions.AdminNotFoundException;
 import com.main.assessment.service.AdminService;
 import com.main.assessment.utilities.Utils;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -46,12 +45,12 @@ public class AdminController {
                     default:
                         break;
                 }
-                System.out.print("Enter 'Y' or 'y' to continue or else to log out : ");
+                System.out.print("Enter 'Y' or 'y' to continue to admin panel or else to log out : ");
             } while (reader.readLine().toLowerCase().charAt(0) == 'y');
         } catch (AdminNotFoundException e) {
             System.out.println(e);
             System.out.println();
-            System.out.print("Enter 'Y' or 'y' to continue or else to log out : ");
+            System.out.print("Enter 'Y' or 'y' to retry or else to go back : ");
             if (reader.readLine().toLowerCase().charAt(0) == 'y') {
                 start();
             }

@@ -23,4 +23,11 @@ public class Utils {
                 "1.Login.\n2.Register.\n3.Begin Assessment.\n4.View all Assessments.\n5.View Pending Assessments.\n6.View Completed Assessments.\n7.View all Assessment Marks.\n8.View Particular Question Group Assessment Mark.\n");
     }
 
+    /*
+     * to view the initial menu
+     */
+    public static void initialMenu() {
+        System.out.println("1.Admin.\n2.Employee.\n3.Exit.\n");
+    }
+
 }
