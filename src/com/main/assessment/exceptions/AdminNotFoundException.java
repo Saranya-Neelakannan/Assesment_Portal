@@ -5,7 +5,12 @@ package com.main.assessment.exceptions;
  */
 public class AdminNotFoundException extends RuntimeException {
 
-    public AdminNotFoundException(String message) {
-        super(message);
-    }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public AdminNotFoundException(String message) {
+		super(message);
+	}
 }

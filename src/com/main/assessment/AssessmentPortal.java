@@ -14,28 +14,28 @@ import java.io.IOException;
  */
 public class AssessmentPortal {
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            Utils.initialMenu();
-            System.out.print("Enter the choice : ");
-            switch (Integer.parseInt(reader.readLine())) {
-                case 1:
-                    AdminController adminController = new AdminController();
-                    adminController.start();
-                    break;
+	public static void main(String[] args) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		while (true) {
+			Utils.initialMenu();
+			System.out.print("Enter the choice : ");
+			switch (Integer.parseInt(reader.readLine())) {
+			case 1:
+				AdminController adminController = new AdminController();
+				adminController.start();
+				break;
 
-                case 2:
-                    EmployeeController employeeController = new EmployeeController();
-                    employeeController.start();
-                    break;
+			case 2:
+				EmployeeController employeeController = new EmployeeController();
+				employeeController.start();
+				break;
 
-                case 3:
-                    System.exit(0);
-                default:
-                    System.out.println("Enter valid choice...!");
-                    break;
-            }
-        }
-    }
+			case 3:
+				System.exit(0);
+			default:
+				System.out.println("Enter valid choice...!");
+				break;
+			}
+		}
+	}
 }

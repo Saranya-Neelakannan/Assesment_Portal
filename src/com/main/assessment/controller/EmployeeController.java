@@ -3,9 +3,7 @@ package com.main.assessment.controller;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-
 import com.main.assessment.concrete.Employee;
-import com.main.assessment.data.EmployeeData;
 import com.main.assessment.exceptions.EmployeeNotFoundException;
 import com.main.assessment.service.EmployeeService;
 import com.main.assessment.utilities.Utils;
@@ -20,48 +18,57 @@ import com.main.assessment.utilities.Utils;
 
 public class EmployeeController {
 
-	EmployeeService employeeService = new EmployeeService();
-	EmployeeData employeeData = new EmployeeData();
-
+	private EmployeeService employeeService = new EmployeeService();
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	Employee employee;
-	String userName;
-	String password;
-	String fullName;
-	String groupId;
+	private String username, password, fullName, adminUsername, groupId;
+
+	private boolean employeeLogin() throws IOException {
+		System.out.print("Enter the username : ");
+		username = reader.readLine();
+
+		System.out.print("Enter the password : ");
+		password = reader.readLine();
+		if (employeeService.login(username, password)) {
+			return true;
+		} else {
+			throw new EmployeeNotFoundException("UnAuthorized Employee...!");
+		}
+	}
 
 	public void start() throws IOException {
-		System.out.println("1.Login.\n2.Register.\n");
-		switch (Integer.parseInt(reader.readLine())) {
+		do {
+			System.out.println("1.Login.\n2.Register.\n");
+			System.out.print("Enter your choice : ");
+			switch (Integer.parseInt(reader.readLine())) {
 			case 1:
 				employeeLogin();
 				break;
 
 			case 2:
-				System.out.println("Enter username");
-				userName = reader.readLine();
-				Employee userExists = employeeData.getEmployee(userName);
-				if (userExists != null) {
-					System.out.println("UserName dos not exist");
-				} else {
-					System.out.println("Enter password");
+				System.out.print("Enter the username");
+				username = reader.readLine();
+				if (employeeService.getEmployee(username)) {
+					System.out.print("Enter the password");
 					password = reader.readLine();
-					System.out.println("Enter fullname");
+					System.out.print("Enter the Fullname");
 					fullName = reader.readLine();
+					System.out.print("Enter the username of your admin : ");
+					adminUsername = reader.readLine();
 
-					Employee employee = new Employee(userName, password, fullName);
-					employeeService.register(employee);
+					employeeService.register(new Employee(username, password, fullName, adminUsername));
+				} else {
+					System.out.println("Username already exist");
 				}
 				break;
 
 			default:
 				break;
-		}
-		try {
-			do {
-				Utils.employeeMenu();
-				System.out.print("Enter your choice : ");
-				switch (Integer.parseInt(reader.readLine())) {
+			}
+			try {
+				do {
+					Utils.employeeMenu();
+					System.out.print("Enter your choice : ");
+					switch (Integer.parseInt(reader.readLine())) {
 					case 1:
 						employeeService.beginAssesment();
 						break;
@@ -79,34 +86,21 @@ public class EmployeeController {
 						System.out.println(employeeService.getAssesmentMarks());
 						break;
 					case 6:
-						System.out.println("Enter the groupId");
+						System.out.print("Enter the groupId : ");
 						groupId = reader.readLine();
 						employeeService.viewParticularMarks(groupId);
 						break;
 
 					default:
 						break;
-				}
-				System.out.print("Enter 'Y' or 'y' to continue or else to log out : ");
-			} while (reader.readLine().toLowerCase().charAt(0) == 'y');
-
-		} catch (EmployeeNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	private boolean employeeLogin() throws IOException {
-		System.out.print("Enter the username : ");
-		userName = reader.readLine();
-
-		System.out.print("Enter the password : ");
-		password = reader.readLine();
-		if (employeeService.login(userName, password)) {
-			return true;
-		} else {
-			throw new EmployeeNotFoundException("UnAuthorized Employee...!");
-		}
+					}
+					System.out.print("Enter 'Y' or 'y' to continue the current employee or else to log out : ");
+				} while (reader.readLine().toLowerCase().charAt(0) == 'y');
+			} catch (EmployeeNotFoundException e) {
+				e.printStackTrace();
+			}
+			System.out.print("Enter 'Y' or 'y' to continue in the employee panel or else to log out : ");
+		} while (reader.readLine().toLowerCase().charAt(0) == 'y');
 	}
 
 }

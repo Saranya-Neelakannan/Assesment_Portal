@@ -6,42 +6,10 @@ import java.util.List;
  * Admin
  */
 public class Admin {
-	private String userName;
-	private String password;
 	private String fullName;
+	private String password;
 	private List<String> questionGroups;
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFullName() {
-		return fullName;
-	}
-
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-
-	public List<String> getQuestionGroups() {
-		return questionGroups;
-	}
-
-	public void setQuestionGroups(List<String> questionGroups) {
-		this.questionGroups = questionGroups;
-	}
+	private String userName;
 
 	public Admin() {
 
@@ -53,6 +21,38 @@ public class Admin {
 		this.password = password;
 		this.fullName = fullName;
 		this.questionGroups = questionGroups;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public List<String> getQuestionGroups() {
+		return questionGroups;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setQuestionGroups(List<String> questionGroups) {
+		this.questionGroups = questionGroups;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	@Override
