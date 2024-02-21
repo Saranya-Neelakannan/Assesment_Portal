@@ -22,15 +22,17 @@ public class QuestionsData {
     /*
      * to get a particular question
      */
-    public Questions getQuestions(String qId) {
-        return questions.stream().filter(question -> question.getQuestionId().equals(qId)).findFirst().orElse(null);
+    public Questions getQuestion(String qId) {
+        return questions.stream().filter(question -> question.getQuestionId()
+        		.equals(qId)).findFirst().orElse(null);
     }
 
     /*
      * to get list of questions by question group Id
      */
     public List<Questions> getQuestionsByGroupId(String groupId) {
-        return questions.stream().filter(question -> question.getQuestionId().contains(groupId)).toList();
+        return questions.stream().filter(question -> question.getQuestionId()
+        		.contains(groupId)).toList();
     }
 
     /*

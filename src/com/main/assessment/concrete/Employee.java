@@ -16,8 +16,8 @@ public class Employee {
 		return assesmentStatus;
 	}
 
-	public void setAssesmentStatus(String groupName, String status) {
-		this.assesmentStatus.put(groupName, status);
+	public void setAssesmentStatus(String groupId,String status) {
+		this.assesmentStatus.replace(groupId, status);
 	}
 
 	public String getUserName() {
