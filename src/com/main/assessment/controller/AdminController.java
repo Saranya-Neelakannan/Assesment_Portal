@@ -1,6 +1,7 @@
 package com.main.assessment.controller;
 
 import com.main.assessment.exceptions.AdminNotFoundException;
+import com.main.assessment.exceptions.EmployeeNotFoundException;
 import com.main.assessment.service.AdminService;
 import com.main.assessment.utilities.Utils;
 import java.io.BufferedReader;
@@ -17,12 +18,13 @@ public class AdminController {
 
     private BufferedReader reader;
     private String username, password;
-    private AdminService adminService = new AdminService(reader);
+    private AdminService adminService;
 
     /*
      * the start method which is going to be execute first
      */
     public void start() throws IOException {
+        adminService.setReader(reader);
         try {
             adminLogin();
             do {
@@ -41,6 +43,33 @@ public class AdminController {
                         System.out.print("Enter the Group name to view Questions :  ");
                         String groupName = reader.readLine();
                         adminService.viewQuestionsByGroupName(groupName);
+                        break;
+
+                    case 4:
+                        System.out.print("Enter the username of the employee : ");
+                        username = reader.readLine();
+                        System.out.print("Enter the question group name to assign to that employee : ");
+                        groupName = reader.readLine();
+                        try {
+                            String result = adminService.assignAssessmentToEmployee(username, groupName);
+                            if (result.equals("assigned")) {
+                                System.out.println("Assignment assigned to that employee.");
+                            } else {
+                                System.out.println("The mentioned assessment are already pending in that employee.");
+                            }
+                        } catch (EmployeeNotFoundException e) {
+                            System.out.println(e);
+                        }
+                        break;
+
+                    case 5:
+                        boolean result = adminService.createQuestionGroup();
+                        if (result) {
+                            System.out.println("Question Group Created.!!!");
+                        } else {
+                            System.out.println("Already the name was associated in another group.!!!");
+                        }
+                        break;
 
                     default:
                         break;
