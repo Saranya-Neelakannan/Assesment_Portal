@@ -12,7 +12,7 @@ public class Utils {
      * to view the admin menus with it's choices.
      */
     public static void adminMenu() {
-        System.out.println("1.View all Employees.\n2.View All Questions.\n3.View Questions by Group Name.\n");
+        System.out.println("1.View all Employees.\n2.View All Questions.\n3.View Questions by Group Name.\n4.Create Questions.\n5.Assign Assessments to the Employee.\n");
     }
 
     /*

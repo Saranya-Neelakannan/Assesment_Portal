@@ -21,8 +21,11 @@ public class AdminService {
     private EmployeeData employeeData = new EmployeeData();
     private Admin admin = new Admin();
     private BufferedReader reader;
-
-    public AdminService(BufferedReader reader) {
+    
+    /*
+     * to set the reader
+     */
+    public void setReader(BufferedReader reader) {
         this.reader = reader;
     }
 
@@ -57,25 +60,6 @@ public class AdminService {
     }
 
     /*
-     * to get a particular question from the admin
-     */
-    public void getQuestions(String qGroupName, String count) throws IOException {
-        String qId = qGroupName + count;
-        System.out.print("Enter the question : ");
-        String question = reader.readLine();
-        System.out.print("Enter the answer of the question : ");
-        String answer = reader.readLine();
-        System.out.print("Enter the Options of the above question : ");
-        List<String> options = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            System.out.print("Option " + i + 1 + " : ");
-            options.add(reader.readLine());
-            System.out.println();
-        }
-        qData.addQuestion(new Questions(qId, question, answer, options));
-    }
-
-    /*
      * to assign the questions to an employee
      */
     public String assignAssessmentToEmployee(String username, String groupName) {
@@ -100,21 +84,55 @@ public class AdminService {
      * to view all questions
      */
     public void viewAllQuestions() {
-        qData.getAllQuestions().forEach(System.out::println);
+        List<Questions> questions = qData.getAllQuestions();
+        if (questions.size() != 0) {
+            questions.forEach(System.out::println);
+        } else {
+            System.out.println("There are no questions.!!!");
+        }
     }
 
     /*
      * to view questions by group name
      */
     public void viewQuestionsByGroupName(String groupName) {
-        qData.getQuestionsByGroupId(groupName).forEach(System.out::println);
+        List<Questions> questions = qData.getQuestionsByGroupId(groupName);
+        if (questions.size() != 0) {
+            questions.forEach(System.out::println);
+        } else {
+            System.out.println("There are no questions the mentioned group name.!!!");
+        }
     }
 
     /*
      * to view all employees
      */
     public void viewAllEmployees() {
-        employeeData.getAllEmployees().forEach(System.out::println);
+        List<Employee> employees = employeeData.getAllEmployees();
+        if (employees.size() != 0) {
+            employees.forEach(System.out::println);
+        } else {
+            System.out.println("There are no employees.!!!");
+        }
+    }
+
+    /*
+     * to get a particular question from the admin
+     */
+    private void getQuestions(String qGroupName, String count) throws IOException {
+        String qId = qGroupName + count;
+        System.out.print("Enter the question : ");
+        String question = reader.readLine();
+        System.out.print("Enter the answer of the question : ");
+        String answer = reader.readLine();
+        System.out.print("Enter the Options of the above question : ");
+        List<String> options = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            System.out.print("Option " + i + 1 + " : ");
+            options.add(reader.readLine());
+            System.out.println();
+        }
+        qData.addQuestion(new Questions(qId, question, answer, options));
     }
 
 }
