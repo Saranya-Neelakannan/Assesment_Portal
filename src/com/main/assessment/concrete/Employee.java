@@ -16,7 +16,11 @@ public class Employee {
 		return assesmentStatus;
 	}
 
-	public void setAssesmentStatus(String groupId,String status) {
+	public void setAssesmentStatus(String groupId, String status) {
+		this.assesmentStatus.put(groupId, status);
+	}
+
+	public void updateAssessmentStatus(String groupId, String status) {
 		this.assesmentStatus.replace(groupId, status);
 	}
 
@@ -48,8 +52,8 @@ public class Employee {
 		return asssementMarks;
 	}
 
-	public void setAsssementMarks(Map<String, Double> asssementMarks) {
-		this.asssementMarks = asssementMarks;
+	public void setAsssementMarks(String groupId, double marks) {
+		this.asssementMarks.put(groupId, marks);
 	}
 
 	public Employee(String userName, String password, String fullName, Map<String, Double> asssementMarks,
