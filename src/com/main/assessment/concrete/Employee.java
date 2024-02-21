@@ -12,6 +12,20 @@ public class Employee {
 	private Map<String, Double> asssementMarks;
 	private Map<String, String> assesmentStatus;
 
+	public Employee(String userName, String password, String fullName, Map<String, Double> asssementMarks,
+			Map<String, String> assesmentStatus) {
+
+		this.userName = userName;
+		this.password = password;
+		this.fullName = fullName;
+		this.asssementMarks = asssementMarks;
+		this.assesmentStatus = assesmentStatus;
+	}
+
+	public Employee() {
+
+	}
+
 	public Map<String, String> getAssesmentStatus() {
 		return assesmentStatus;
 	}
@@ -54,20 +68,6 @@ public class Employee {
 
 	public void setAsssementMarks(String groupId, double marks) {
 		this.asssementMarks.put(groupId, marks);
-	}
-
-	public Employee(String userName, String password, String fullName, Map<String, Double> asssementMarks,
-			Map<String, String> assesmentStatus) {
-
-		this.userName = userName;
-		this.password = password;
-		this.fullName = fullName;
-		this.asssementMarks = asssementMarks;
-		this.assesmentStatus = assesmentStatus;
-	}
-
-	public Employee() {
-
 	}
 
 	@Override
