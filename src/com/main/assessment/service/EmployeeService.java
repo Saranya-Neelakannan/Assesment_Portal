@@ -19,6 +19,9 @@ public class EmployeeService {
 		this.reader = reader;
 	}
 
+	public EmployeeService() {
+			}
+
 	EmployeeData employeeData = new EmployeeData();
 	QuestionsData questionsData = new QuestionsData();
 	Questions questions = new Questions();
@@ -45,13 +48,19 @@ public class EmployeeService {
 
 	public void beginAssesment() throws NumberFormatException, IOException {
 
+		
 		System.out.println("Enter the groupId");
 		String groupId = reader.readLine();
-
+		if(emp.getAssesmentStatus().get(groupId).equals("completed")) {
+			System.out.println("You have aldready");
+		}
+		else {
 		List<Questions> questionList = questionsData.getQuestionsByGroupId(groupId);
 		List<String> answerList = printQuestions(questionList);
 
 		calculateMarks(answerList, groupId);
+		
+	}
 
 	}
 

@@ -56,14 +56,14 @@ public class Employee {
 		this.asssementMarks.put(groupId, marks);
 	}
 
-	public Employee(String userName, String password, String fullName, Map<String, Double> asssementMarks,
-			Map<String, String> assesmentStatus) {
+	public Employee(String userName, String password, String fullName){
+ 
 
 		this.userName = userName;
 		this.password = password;
 		this.fullName = fullName;
-		this.asssementMarks = asssementMarks;
-		this.assesmentStatus = assesmentStatus;
+	
+		
 	}
 
 	public Employee() {
