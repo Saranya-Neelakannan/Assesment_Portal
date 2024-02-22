@@ -69,14 +69,15 @@ public class AdminService {
 	 */
 	private void getQuestions(String qGroupName, String count) throws IOException {
 		String qId = qGroupName + count;
-		System.out.print("Enter the question : ");
+		System.out.print(count + ".) Enter the question : ");
 		String question = reader.readLine();
-		System.out.print("Enter the answer of the question : ");
+		System.out.print("Enter the answer of the question " + count + " : " );
 		String answer = reader.readLine();
-		System.out.print("Enter the Options of the above question : ");
+		System.out.print("Enter the Options of the above question -> ");
 		List<String> options = new ArrayList<>();
+		System.out.println();
 		for (int i = 0; i < 4; i++) {
-			System.out.print("Option " + i + 1 + " : ");
+			System.out.print("Option " + (i + 1) + " : ");
 			options.add(reader.readLine());
 			System.out.println();
 		}
