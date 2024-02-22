@@ -87,9 +87,11 @@ public class EmployeeService {
 				System.out.print("\t" + optionCount++ + ".) " + i + "\t");
 			}
 			System.out.println();
+			System.out.println();
 			System.out.print("Enter any one of the option : ");
 			int option = Integer.parseInt(reader.readLine());
 			answerList.add(q.getOptions().get(option - 1));
+			System.out.println();
 			System.out.println();
 		}
 		return answerList;
@@ -113,12 +115,12 @@ public class EmployeeService {
 	}
 
 	public void viewParticularMarks(String groupId) {
-		List<Map.Entry<String, Double>> assessmentMarks = emp.getAsssementMarks().entrySet().stream().filter(employee -> employee.getKey().equals(groupId)).toList();
+		List<Map.Entry<String, Double>> assessmentMarks = emp.getAsssementMarks().entrySet().stream()
+				.filter(employee -> employee.getKey().equals(groupId)).toList();
 
-		if(assessmentMarks.size() != 0) {
+		if (assessmentMarks.size() != 0) {
 			assessmentMarks.forEach(System.out::println);
-		}
-		else {
+		} else {
 			System.out.println("There are no completed assessments.!!!");
 		}
 	}
