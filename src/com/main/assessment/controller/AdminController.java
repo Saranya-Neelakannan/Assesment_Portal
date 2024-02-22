@@ -1,6 +1,7 @@
 package com.main.assessment.controller;
 
 import com.main.assessment.exceptions.AdminNotFoundException;
+import com.main.assessment.exceptions.AssessmentNotFoundException;
 import com.main.assessment.exceptions.EmployeeNotFoundException;
 import com.main.assessment.service.AdminService;
 import com.main.assessment.utilities.Utils;
@@ -15,7 +16,7 @@ public class AdminController {
 
 	private AdminService adminService = new AdminService();
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	private String username, password;
+	private String username, password, groupName;
 
 	/*
 	 * to validate the admin credentials
@@ -44,17 +45,30 @@ public class AdminController {
 				System.out.print("Enter your choice : ");
 				switch (Integer.parseInt(reader.readLine())) {
 				case 1:
-					adminService.viewAllEmployees();
+					try {
+						adminService.viewAllEmployees();
+					} catch (EmployeeNotFoundException e) {
+						System.out.println(e);
+					}
 					break;
 
 				case 2:
-					adminService.viewAllQuestions();
+					try {
+						adminService.viewAllQuestions();
+					} catch (AssessmentNotFoundException e) {
+						System.out.println(e);
+					}
 					break;
 
 				case 3:
-					System.out.print("Enter the Group name to view Questions :  ");
-					String groupName = reader.readLine();
-					adminService.viewQuestionsByGroupName(groupName);
+					try {
+						System.out.print("Enter the Group name to view Questions :  ");
+						groupName = reader.readLine();
+						adminService.viewQuestionsByGroupName(groupName);
+
+					} catch (AssessmentNotFoundException e) {
+						System.out.println(e);
+					}
 					break;
 
 				case 4:
@@ -70,6 +84,8 @@ public class AdminController {
 							System.out.println("The mentioned assessment are already pending in that employee.");
 						}
 					} catch (EmployeeNotFoundException e) {
+						System.out.println(e);
+					} catch (AssessmentNotFoundException e) {
 						System.out.println(e);
 					}
 					break;

@@ -11,6 +11,7 @@ import com.main.assessment.concrete.Questions;
 import com.main.assessment.data.AdminData;
 import com.main.assessment.data.EmployeeData;
 import com.main.assessment.data.QuestionsData;
+import com.main.assessment.exceptions.AssessmentNotFoundException;
 import com.main.assessment.exceptions.EmployeeNotFoundException;
 
 /**
@@ -30,7 +31,10 @@ public class AdminService {
 		Employee employee = employeeData.getEmployee(username);
 		if (employee == null) {
 			throw new EmployeeNotFoundException("Employee Not Found");
-		} else if (employee.getAdminUsername().equals(admin.getUserName())) {
+		} else if (qData.getQuestionsByGroupId(groupName).size() == 0) {
+			throw new AssessmentNotFoundException("There are no question group associated with mentioned name.!!!");
+		}
+		else if (employee.getAdminUsername().equals(admin.getUserName())) {
 			String status = employee.getAssesmentStatus().get(groupName);
 			if (status == null) {
 				employee.setAssesmentStatus(groupName, "pending");
@@ -71,7 +75,7 @@ public class AdminService {
 		String qId = qGroupName + count;
 		System.out.print(count + ".) Enter the question : ");
 		String question = reader.readLine();
-		System.out.print("Enter the answer of the question " + count + " : " );
+		System.out.print("Enter the answer of the question " + count + " : ");
 		String answer = reader.readLine();
 		System.out.print("Enter the Options of the above question -> ");
 		List<String> options = new ArrayList<>();
@@ -105,7 +109,7 @@ public class AdminService {
 		if (employees.size() != 0) {
 			employees.forEach(System.out::println);
 		} else {
-			System.out.println("There are no employees.!!!");
+			throw new EmployeeNotFoundException("There are no employees.!!!");
 		}
 	}
 
@@ -118,7 +122,7 @@ public class AdminService {
 		if (questions.size() != 0) {
 			questions.forEach(System.out::println);
 		} else {
-			System.out.println("There are no questions.!!!");
+			throw new AssessmentNotFoundException("There are no Assessments");
 		}
 	}
 
@@ -131,7 +135,7 @@ public class AdminService {
 		if (questions.size() != 0) {
 			questions.forEach(System.out::println);
 		} else {
-			System.out.println("There are no questions the mentioned group name.!!!");
+			throw new AssessmentNotFoundException("There are no Assessments associated with the mention group Name");
 		}
 	}
 

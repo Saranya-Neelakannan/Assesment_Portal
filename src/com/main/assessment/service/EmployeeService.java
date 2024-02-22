@@ -43,15 +43,19 @@ public class EmployeeService {
 		double marks = 0.0;
 		for (int i = 0; i < answerList.size(); i++) {
 			if (answerList.get(i).equals(questions.get(i).getAnswer())) {
+				answerList.set(i, answerList.get(i) + "\t Correct Answer.");
 				marks++;
+			} else {
+				answerList.set(i, answerList.get(i) + "\t Wrong Answer.");
 			}
+		}
+		System.out.println("Your Answers:");
+		int count = 1;
+		for (String s : answerList) {
+			System.out.println(count++ + ".) " + s);
 		}
 		marks = (marks / questions.size()) * 100;
 		System.out.println("Your Percentage : " + marks + " %.");
-		System.out.println("Your Answers:");
-		for(String s:answerList) {
-			System.out.println(s);
-		}
 		emp.setAsssementMarks(grpId, marks);
 		emp.updateAssessmentStatus(grpId, "completed");
 	}

@@ -36,35 +36,35 @@ public class EmployeeController {
 	}
 
 	public void start() throws IOException {
-		do {
-			System.out.println("1.Login.\n2.Register.\n");
-			System.out.print("Enter your choice : ");
-			switch (Integer.parseInt(reader.readLine())) {
-			case 1:
-				employeeLogin();
-				break;
+		try {
+			do {
+				System.out.println("1.Login.\n2.Register.\n");
+				System.out.print("Enter your choice : ");
+				switch (Integer.parseInt(reader.readLine())) {
+				case 1:
+					employeeLogin();
+					break;
 
-			case 2:
-				System.out.print("Enter the username");
-				username = reader.readLine();
-				if (employeeService.getEmployee(username)) {
-					System.out.print("Enter the password");
-					password = reader.readLine();
-					System.out.print("Enter the Fullname");
-					fullName = reader.readLine();
-					System.out.print("Enter the username of your admin : ");
-					adminUsername = reader.readLine();
+				case 2:
+					System.out.print("Enter the username");
+					username = reader.readLine();
+					if (employeeService.getEmployee(username)) {
+						System.out.print("Enter the password");
+						password = reader.readLine();
+						System.out.print("Enter the Fullname");
+						fullName = reader.readLine();
+						System.out.print("Enter the username of your admin : ");
+						adminUsername = reader.readLine();
 
-					employeeService.register(new Employee(username, password, fullName, adminUsername));
-				} else {
-					System.out.println("Username already exist");
+						employeeService.register(new Employee(username, password, fullName, adminUsername));
+					} else {
+						System.out.println("Username already exist");
+					}
+					break;
+
+				default:
+					break;
 				}
-				break;
-
-			default:
-				break;
-			}
-			try {
 				do {
 					Utils.employeeMenu();
 					System.out.print("Enter your choice : ");
@@ -96,11 +96,12 @@ public class EmployeeController {
 					}
 					System.out.print("Enter 'Y' or 'y' to continue the current employee or else to log out : ");
 				} while (reader.readLine().toLowerCase().charAt(0) == 'y');
-			} catch (EmployeeNotFoundException e) {
-				e.printStackTrace();
-			}
-			System.out.print("Enter 'Y' or 'y' to continue in the employee panel or else to log out : ");
-		} while (reader.readLine().toLowerCase().charAt(0) == 'y');
+
+				System.out.print("Enter 'Y' or 'y' to continue in the employee panel or else to log out : ");
+			} while (reader.readLine().toLowerCase().charAt(0) == 'y');
+		} catch (EmployeeNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
