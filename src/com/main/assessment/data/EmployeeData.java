@@ -12,7 +12,7 @@ public class EmployeeData {
 
     private static List<Employee> employees = new ArrayList<>(
         List.of(
-            new Employee("ajith", "ahith", "AJITH S", "dhinesh"),
+            new Employee("ajith", "ajith", "AJITH S", "dhinesh"),
             new Employee("arun", "arun", "ARUN P", "saranya"),
             new Employee("vignesh", "vignesh", "VIGNESHKUMAR M", "dhinesh"),
             new Employee("sathish", "sathish", "SATHISHKUMAR M", "saranya"),
