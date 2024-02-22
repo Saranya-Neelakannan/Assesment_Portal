@@ -12,6 +12,7 @@ import com.main.assessment.data.AdminData;
 import com.main.assessment.data.EmployeeData;
 import com.main.assessment.data.QuestionsData;
 import com.main.assessment.exceptions.AssessmentNotFoundException;
+import com.main.assessment.exceptions.EmployeeAlreadyExistException;
 import com.main.assessment.exceptions.EmployeeNotFoundException;
 
 /**
@@ -25,6 +26,28 @@ public class AdminService {
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 	/*
+	 * to add new employee
+	 */
+	public void addNewEmployee(String username, String password, String fullName) {
+		if (employeeData.getEmployee(username) != null) {
+			throw new EmployeeAlreadyExistException("Username already associated with other employee.!!!");
+		} else {
+			employeeData.addEmployee(new Employee(username, password, fullName, admin.getUserName()));
+		}
+	}
+
+	/*
+	 * to delete employee
+	 */
+	public void deleteEmployee(String username) {
+		if (employeeData.getEmployee(username).getUserName().equals(username)) {
+			employeeData.deleteEmployee(username);
+		} else {
+			throw new EmployeeNotFoundException("Employee Not Found.!!!");
+		}
+	}
+
+	/*
 	 * to assign the questions to an employee
 	 */
 	public String assignAssessmentToEmployee(String username, String groupName) {
@@ -33,8 +56,7 @@ public class AdminService {
 			throw new EmployeeNotFoundException("Employee Not Found");
 		} else if (qData.getQuestionsByGroupId(groupName).size() == 0) {
 			throw new AssessmentNotFoundException("There are no question group associated with mentioned name.!!!");
-		}
-		else if (employee.getAdminUsername().equals(admin.getUserName())) {
+		} else if (employee.getAdminUsername().equals(admin.getUserName())) {
 			String status = employee.getAssesmentStatus().get(groupName);
 			if (status == null) {
 				employee.setAssesmentStatus(groupName, "pending");

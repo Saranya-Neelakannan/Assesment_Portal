@@ -2,6 +2,7 @@ package com.main.assessment.controller;
 
 import com.main.assessment.exceptions.AdminNotFoundException;
 import com.main.assessment.exceptions.AssessmentNotFoundException;
+import com.main.assessment.exceptions.EmployeeAlreadyExistException;
 import com.main.assessment.exceptions.EmployeeNotFoundException;
 import com.main.assessment.service.AdminService;
 import com.main.assessment.utilities.Utils;
@@ -16,7 +17,7 @@ public class AdminController {
 
 	private AdminService adminService = new AdminService();
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	private String username, password, groupName;
+	private String username, password, groupName, fullName;
 
 	/*
 	 * to validate the admin credentials
@@ -46,13 +47,39 @@ public class AdminController {
 				switch (Integer.parseInt(reader.readLine())) {
 				case 1:
 					try {
+						System.out.print("Enter the username : ");
+						username = reader.readLine();
+						System.out.print("Enter the password : ");
+						password = reader.readLine();
+						System.out.print("Enter the Fullname : ");
+						fullName = reader.readLine();
+						adminService.addNewEmployee(username, password, fullName);
+						System.out.println("Employee Added Successfully.!!!");
+					} catch (EmployeeAlreadyExistException e) {
+						System.out.println(e);
+					}
+					break;
+
+				case 2:
+					try {
+						System.out.print("Enter the username : ");
+						username = reader.readLine();
+						adminService.deleteEmployee(username);
+						System.out.println("Employee Deleted Successfully.!!!");
+					} catch (EmployeeNotFoundException e) {
+						System.out.println(e);
+					}
+					break;
+					
+				case 3:
+					try {
 						adminService.viewAllEmployees();
 					} catch (EmployeeNotFoundException e) {
 						System.out.println(e);
 					}
 					break;
 
-				case 2:
+				case 4:
 					try {
 						adminService.viewAllQuestions();
 					} catch (AssessmentNotFoundException e) {
@@ -60,7 +87,7 @@ public class AdminController {
 					}
 					break;
 
-				case 3:
+				case 5:
 					try {
 						System.out.print("Enter the Group name to view Questions :  ");
 						groupName = reader.readLine();
@@ -71,7 +98,7 @@ public class AdminController {
 					}
 					break;
 
-				case 4:
+				case 6:
 					System.out.print("Enter the username of the employee : ");
 					username = reader.readLine();
 					System.out.print("Enter the question group name to assign to that employee : ");
@@ -90,7 +117,7 @@ public class AdminController {
 					}
 					break;
 
-				case 5:
+				case 7:
 					boolean result = adminService.createQuestionGroup();
 					if (result) {
 						System.out.println("Question Group Created.!!!");

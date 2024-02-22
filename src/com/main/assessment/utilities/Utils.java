@@ -10,7 +10,7 @@ public class Utils {
 	 */
 	public static void adminMenu() {
 		System.out.println(
-				"1.View all Employees.\n2.View All Questions.\n3.View Questions by Group Name.\n4.Assign Assessments to the Employee.\n5.Create Questions.\n");
+				"1.Add Employee.\n2.Delete Employee.\n3.View all Employees.\n4.View All Questions.\n5.View Questions by Group Name.\n6.Assign Assessments to the Employee.\n7.Create Questions.\n");
 	}
 
 	/*

@@ -27,6 +27,13 @@ public class EmployeeData {
     public void addEmployee(Employee employee) {
         employees.add(employee);
     }
+    
+    /*
+     * to delete employee
+     */
+    public void deleteEmployee(String username) {
+    	employees.removeIf(emp -> emp.getUserName().equals(username));
+    }
 
     /*
      * to get all employees

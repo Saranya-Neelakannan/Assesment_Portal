@@ -46,12 +46,12 @@ public class EmployeeController {
 					break;
 
 				case 2:
-					System.out.print("Enter the username");
+					System.out.print("Enter the username : ");
 					username = reader.readLine();
 					if (employeeService.getEmployee(username)) {
-						System.out.print("Enter the password");
+						System.out.print("Enter the password : ");
 						password = reader.readLine();
-						System.out.print("Enter the Fullname");
+						System.out.print("Enter the Fullname : ");
 						fullName = reader.readLine();
 						System.out.print("Enter the username of your admin : ");
 						adminUsername = reader.readLine();
