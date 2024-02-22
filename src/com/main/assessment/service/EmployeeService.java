@@ -48,6 +48,10 @@ public class EmployeeService {
 		}
 		marks = (marks / questions.size()) * 100;
 		System.out.println("Your Percentage : " + marks + " %.");
+		System.out.println("Your Answers:");
+		for(String s:answerList) {
+			System.out.println(s);
+		}
 		emp.setAsssementMarks(grpId, marks);
 		emp.updateAssessmentStatus(grpId, "completed");
 	}
